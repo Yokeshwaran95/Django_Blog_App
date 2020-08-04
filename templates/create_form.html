@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head_title %} {{ title }}| {{block.super}}{% endblock head_title %}
+{% block content %}
+<style>
+        .container{
+            box-shadow: 0 16px 48px #bdc3c7 ;
+            padding: 10px;
+        }
+        tr,td{
+        	font-family: "Roboto", sans-serif;
+        	padding: 10px;
+        }
+       
+</style>
+<body>
+<h1>{{title}}</h1>
+<!-- {{csrf_token}} -->
+{% if errors %}
+{{errors}}
+{% endif %}
+<div class="container">
+	<h1>Submit Your Post</h1>
+<form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.title.label_tag }}</td>
+    <td>{{ form.title }}</td>
+</tr>
+<tr>
+    <td>{{ form.content.label_tag }}</td>
+    <td>{{ form.content }}</td>
+</tr>
+<tr>
+    <td>{{ form.pictures.label_tag }}</td>
+    <td>{{ form.pictures }}</td>
+</tr>
+<tr>
+    <td>{{ form.category.label_tag }}</td>
+    <td>{{ form.category }}</td>
+</tr>
+</table>
+<!-- {{form.as_p}} -->
+<button type="submit">Save</button>
+</form>
+</div>
+</body>
+{% endblock %}
